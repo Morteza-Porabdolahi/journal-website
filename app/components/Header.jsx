@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from './Header.module.css';
+import Image from 'next/image';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,9 @@ export default function Header() {
       className={`${styles.siteHeader} ${open ? styles.open : ''}`}
     >
       <div className={styles.hbar}>
-        <Link href="/" className={styles.logo} aria-label="صفحه اصلی" />
+        <Link href="/" aria-label="صفحه اصلی">
+          <Image alt='Association Logo' className={styles.association_img} src="/images/association_logo.png" width={85} height={85}/>
+        </Link>
 
         <nav className={styles.nav} id="nav" aria-label="منوی اصلی" onClick={(e) => {
           if (e.target.closest('a')) close();

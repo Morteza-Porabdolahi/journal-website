@@ -8,14 +8,10 @@
 
 .hbar {
   position: relative; width: 95%; margin: 0 auto; height: 76px;
-  display: flex; align-items: center; gap: 16px;
+  display: flex; gap: 16px;  align-items: center;
 }
 
-.logo {
-  flex: 0 0 auto; display: block; width: 132px; height: 44px;
-  background: #d9d9d9; border-radius: 10px; overflow: hidden;
-}
-.logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.association_img { object-fit: contain; display: block; }
 
 .nav { display: flex; align-items: center; gap: 34px; margin-inline-start: auto; }
 .nav a {
@@ -34,7 +30,7 @@
 
 @media (max-width: 760px) {
   .hbar { width: 100%; padding: 0 16px; height: 64px; }
-  .logo { width: 104px; height: 38px; border-radius: 8px; }
+  .association_img { width: 70px; height: 70px; }
 
   .burger {
     display: inline-flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
