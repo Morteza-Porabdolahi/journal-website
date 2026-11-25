@@ -41,7 +41,7 @@ export async function POST(request) {
   const buffer = Buffer.from(await file.arrayBuffer());
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    service: process.env.MAIL_SERVICE,
     port: Number(process.env.SMTP_PORT || 465),
     secure: Number(process.env.SMTP_PORT || 465) === 465,
     auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
