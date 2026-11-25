@@ -10,7 +10,7 @@ body {
   align-items: center;
   gap: 16px;
   padding: 0 0 16px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (max-width: 760px) {
