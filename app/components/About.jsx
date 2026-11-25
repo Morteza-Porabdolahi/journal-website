@@ -31,7 +31,7 @@ export default function About() {
 
           <div className={styles.mgHero}>
             <Image
-              src="/images/hero.jpg"
+              src="/images/faculty.jpg"
               alt="دانشکده مهندسی شیمی و نفت دانشگاه تبریز"
               fill
               sizes="(max-width: 820px) 90vw, 45vw"

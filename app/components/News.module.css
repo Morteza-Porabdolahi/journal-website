@@ -6,7 +6,7 @@
 }
 .news a:focus-visible, .news button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-.sh { margin-bottom: 36px; }
+.sh { margin-bottom: 45px; }
 .all {
   color: var(--blue); font-weight: 700; font-size: .92rem; text-decoration: none;
   padding-bottom: 2px; border-bottom: 1.5px solid var(--gold); white-space: nowrap;
