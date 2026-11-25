@@ -12,10 +12,6 @@ body {
   padding: 0 0 16px;
 }
 
-body, html {
-  overflow-x: clip;
-}
-
 @media (max-width: 760px) {
   body { gap: 10px; padding-bottom: 10px; }
 }

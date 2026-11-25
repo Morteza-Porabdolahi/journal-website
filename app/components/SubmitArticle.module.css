@@ -119,7 +119,7 @@
 }
 .rm:hover { background: var(--navy); color: #fff; }
 
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.hp { position: absolute; width: 1px; height: 1px; opacity: 0; }
 
 .agree { display: flex; align-items: flex-start; gap: 10px; font-size: .85rem; color: var(--muted); cursor: pointer; }
 .agree input { flex: none; width: 18px; height: 18px; margin-top: 5px; accent-color: var(--gold); cursor: pointer; }
