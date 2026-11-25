@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import Image from 'next/image';
 
 const QUICK = [
   { label: 'معرفی نشریه', href: '#about' },
@@ -12,13 +13,13 @@ const QUICK = [
 const CONTACT = [
   { icon: 'pin', text: 'تبریز، بلوار ۲۹ بهمن، دانشگاه تبریز، دانشکده مهندسی شیمی و نفت' },
   { icon: 'phone', text: '۰۴۱-۳۳۳۹۳۰۰۰', href: 'tel:+984133393000', ltr: true },
-  { icon: 'mail', text: 'kimia@tabrizu.ac.ir', href: 'mailto:kimia@tabrizu.ac.ir', ltr: true },
+  { icon: 'mail', text: 'chemengineeringjournal@gmail.com', href: 'mailto:chemengineeringjournal@gmail.com', ltr: true },
 ];
 
 const SOCIAL = [
   { key: 'tg', label: 'تلگرام', href: '#' },
   { key: 'ig', label: 'اینستاگرام', href: '#' },
-  { key: 'mail', label: 'ایمیل', href: 'mailto:kimia@tabrizu.ac.ir' },
+  { key: 'mail', label: 'ایمیل', href: 'mailto:chemengineeringjournal@gmail.com' },
 ];
 
 const ICONS = {
@@ -49,11 +50,11 @@ export default function Footer() {
     <footer id="contact" className={styles.footer}>
       <div className={styles.cta}>
         <div className={styles.ctaText}>
-          <h3>مقاله یا گزارشی برای انتشار دارید؟</h3>
-          <p>نوشته‌هایتان را برای تیم تحریریه کیمیا بفرستید تا در شماره بعدی دیده شود.</p>
+          <h3>آیا در زمینه های دیگری می‌خواهید همکاری کنید؟</h3>
+          <p>برای ارتباط با نشریه انجمن دانشکده مهندسی شیمی و نفت روی لینک روبه‌رو کلیک کنید.</p>
         </div>
-        <a className={styles.ctaBtn} href="mailto:kimia@tabrizu.ac.ir">
-          ارسال مقاله
+        <a className={styles.ctaBtn} href="mailto:chemengineeringjournal@gmail.com">
+          ارتباط با نشریه
           <span className={styles.ctaIc}><Icon name="arrow" size={10} /></span>
         </a>
       </div>
@@ -63,7 +64,7 @@ export default function Footer() {
 
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <span className={styles.logo} aria-hidden="true" />
+            <Image className={styles.logo} width={85} height={85} src="/images/association_logo.png" alt='Association logo'/>
             <span className={styles.badge}>نشریه دانشگاه تبریز</span>
             <p>
               «کیمیا» نشریه دانشجویی دانشکده مهندسی شیمی و نفت دانشگاه تبریز است؛
