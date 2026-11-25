@@ -1,6 +1,6 @@
 .siteHeader {
   position: sticky; top: 0; z-index: 50; width: 100%;
-  background: rgba(255,255,255,.51);
+  background: #f7f7f782;
   box-shadow: 0 -12px 10px 0 rgba(211,211,211,.15);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
