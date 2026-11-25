@@ -75,7 +75,7 @@ export default function Banner() {
         <p>مقاله‌ها، گزارش‌ها و دستاوردهای دانشکده مهندسی شیمی و نفت را در یک‌جا بخوانید و دانلود کنید.</p>
 
         <div className={styles.actions}>
-          <Link className={`${styles.btn} ${styles.btnPrimary}`} href="#archive">مشاهده آرشیو شماره‌ها</Link>
+          <Link className={`${styles.btn} ${styles.btnPrimary}`} href="#journals">مشاهده آرشیو شماره‌ها</Link>
           <Link className={`${styles.btn} ${styles.btnGhost}`} href="#about">درباره نشریه</Link>
         </div>
       </div>
