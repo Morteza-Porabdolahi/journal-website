@@ -1,5 +1,6 @@
+import { getAwardsGrouped } from '@/src/db/queries';
+
 import SectionHead from './SectionHead';
-import { AWARDS } from '../data/awards';
 import styles from './Awards.module.css';
 
 const ICONS = {
@@ -62,7 +63,8 @@ const Pin = () => (
     </svg>
 );
 
-export default function Awards() {
+export default async function Awards() {
+    const awards = await getAwardsGrouped();
     return (
         <section
             id="awards"
@@ -76,7 +78,7 @@ export default function Awards() {
             />
 
             <div className={styles.tl}>
-                {AWARDS.map((y) => (
+                {awards.map((y) => (
                     <div key={y.year} className={styles.yr}>
                         <div className={styles.yrLabel}>{y.year}</div>
                         <div className={styles.items}>

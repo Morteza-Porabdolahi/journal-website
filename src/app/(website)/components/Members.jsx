@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import SectionHead from './SectionHead';
-import { MEMBERS } from '../data/members';
 import styles from './Members.module.css';
+
+import { getMembers } from '@/src/db/queries';
 
 const ICONS = {
     tg: (
@@ -54,7 +55,9 @@ const UserIcon = () => (
     </svg>
 );
 
-export default function Members() {
+export default async function Members() {
+    const members = await getMembers();
+
     return (
         <section id="fm" className={styles.fm} aria-label="اعضای ویژه نشریه">
             <SectionHead
@@ -64,7 +67,7 @@ export default function Members() {
             />
 
             <div className={styles.grid}>
-                {MEMBERS.map((m) => {
+                {members.map((m) => {
                     const links = ['tg', 'ig', 'mail'].filter((k) => m[k]);
                     return (
                         <article key={m.id} className={styles.card}>

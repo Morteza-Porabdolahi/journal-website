@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import SectionHead from './SectionHead';
-import { NEXT_EVENT, NEWS } from '../data/news';
 import styles from './News.module.css';
 
 const Arrow = () => (
@@ -49,7 +48,7 @@ const Clock = () => (
     </svg>
 );
 
-export default function News() {
+export default function News({ news, next_event }) {
     const trackRef = useRef(null);
     const cardRefs = useRef([]);
     const [cur, setCur] = useState(0);
@@ -88,7 +87,7 @@ export default function News() {
     }, []);
 
     const goTo = (i) => {
-        i = Math.max(0, Math.min(NEWS.length - 1, i));
+        i = Math.max(0, Math.min(news.length - 1, i));
         const d =
             cardRefs.current[i].getBoundingClientRect().right -
             trackRef.current.getBoundingClientRect().right;
@@ -107,32 +106,32 @@ export default function News() {
                 </Link>
             </SectionHead>
 
-            <Link className={styles.next} href={NEXT_EVENT.href}>
+            <Link className={styles.next} href={next_event.href}>
                 <div className={styles.bigdate}>
-                    <b>{NEXT_EVENT.day}</b>
-                    <span>{NEXT_EVENT.month}</span>
+                    <b>{next_event.day}</b>
+                    <span>{next_event.month}</span>
                 </div>
                 <div className={styles.nextbody}>
-                    <span className={styles.tag}>{NEXT_EVENT.tag}</span>
-                    <h3>{NEXT_EVENT.title}</h3>
+                    <span className={styles.tag}>{next_event.tag}</span>
+                    <h3>{next_event .title}</h3>
                     <div className={styles.meta}>
                         <span>
                             <Clock />
-                            {NEXT_EVENT.time}
+                            {next_event.time}
                         </span>
                         <span>
                             <Pin />
-                            {NEXT_EVENT.place}
+                            {next_event.place}
                         </span>
                     </div>
                 </div>
-                <span className={styles.cta}>
+                {/* <span className={styles.cta}>
                     ثبت‌نام و جزئیات <Arrow />
-                </span>
+                </span> */}
             </Link>
 
             <div className={styles.grid} ref={trackRef}>
-                {NEWS.map((n, i) => (
+                {news.map((n, i) => (
                     <Link
                         key={n.id}
                         href={n.href}
@@ -169,7 +168,7 @@ export default function News() {
 
             <div className={styles.ctrl}>
                 <div className={styles.dots}>
-                    {NEWS.map((n, i) => (
+                    {news.map((n, i) => (
                         <button
                             key={n.id}
                             type="button"
@@ -202,7 +201,7 @@ export default function News() {
                         type="button"
                         className={styles.arr}
                         aria-label="بعدی"
-                        disabled={cur === NEWS.length - 1}
+                        disabled={cur === news.length - 1}
                         onClick={() => goTo(cur + 1)}
                     >
                         <Arrow />

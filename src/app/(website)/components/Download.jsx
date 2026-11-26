@@ -1,30 +1,10 @@
 import Image from 'next/image';
 import styles from './Download.module.css';
 
-const ISSUES = [
-    {
-        title: 'شماره اول نشریه کیمیا',
-        cover: '/images/issue-1.png',
-        file: '/files/issue1.pdf',
-    },
-    {
-        title: 'شماره دوم نشریه کیمیا',
-        cover: '/images/issue-2.png',
-        file: '/files/issue2.pdf',
-    },
-    {
-        title: 'شماره سوم نشریه کیمیا',
-        cover: '/images/issue-3.png',
-        file: '/files/issue3.pdf',
-    },
-    {
-        title: 'شماره چهارم نشریه کیمیا',
-        cover: '/images/issue-4.png',
-        file: '/files/issue4.pdf',
-    },
-];
+import { getIssues } from '@/src/db/queries';
 
-export default function Download() {
+export default async function Download() {
+    const issues = await getIssues();
     return (
         <section
             id="journals"
@@ -34,7 +14,7 @@ export default function Download() {
             <div className={styles.band} />
 
             <div className={styles.cards}>
-                {ISSUES.map((issue) => (
+                {issues.map((issue) => (
                     <article key={issue.file} className={styles.card}>
                         <div className={styles.inner}>
                             <Image
