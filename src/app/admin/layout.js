@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { Vazirmatn } from 'next/font/google';
-// import { requireAdmin } from '@/lib/auth';
-// import { logoutAction } from './actions';
+
 import styles from './admin.module.css';
 import './globals.css';
+
+import { requireAdmin } from '@/src/lib/auth';
+import { logoutAction } from './actions';
 
 const vazir = Vazirmatn({
     subsets: ['arabic', 'latin'],
@@ -17,8 +19,8 @@ export const metadata = {
     robots: { index: false, follow: false },
 };
 
-export default function AdminLayout({ children }) {
-    //   await requireAdmin();
+export default async function AdminLayout({ children }) {
+    await requireAdmin();
 
     return (
         <html lang="fa" dir="rtl" className={vazir.variable}>
@@ -45,7 +47,7 @@ export default function AdminLayout({ children }) {
                             مشاهده سایت اصلی ↗
                         </Link>
 
-                        <form className={styles.logoutForm}>
+                        <form action={logoutAction} className={styles.logoutForm}>
                             <button type="submit" className={styles.logoutBtn}>
                                 خروج از حساب
                             </button>
