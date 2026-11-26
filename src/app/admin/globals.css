@@ -1,0 +1,8 @@
+:root { --yellow: #FFBA3B; --navy: #0b2a6f; --gold: #FFBA3B; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-vazir), Tahoma, sans-serif;
+  background: #fff;
+}
