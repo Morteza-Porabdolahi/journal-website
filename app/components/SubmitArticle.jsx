@@ -5,7 +5,7 @@ import SectionHead from './SectionHead';
 import styles from './SubmitArticle.module.css';
 
 const MAX_MB = 5;
-const ALLOWED = ['pdf', 'doc', 'docx'];
+const ALLOWED = ['rar', 'zip'];
 
 const CATEGORIES = ['مقاله علمی', 'گزارش', 'مصاحبه', 'یادداشت و تحلیل', 'معرفی کتاب یا نرم‌افزار'];
 
@@ -16,9 +16,10 @@ const STEPS = [
 ];
 
 const RULES = [
-  'فایل در قالب Word یا PDF و حداکثر ۵ مگابایت باشد.',
+  'فایل در قالب ZIP یا RAR و حداکثر ۵ مگابایت باشد.',
   'متن اصیل باشد و منابع در پایان مقاله ذکر شود.',
   'نام و مشخصات نویسنده در فرم درج شود.',
+  'توجه داشته باشید که فایل فشرده ارسالی شامل فایل ورد و پی دی اف مقاله باشد.',
 ];
 
 const Check = () => (
@@ -37,7 +38,7 @@ export default function SubmitArticle() {
   const pick = (f) => {
     if (!f) return;
     const ext = f.name.split('.').pop().toLowerCase();
-    if (!ALLOWED.includes(ext)) return setError('فقط فایل‌های PDF، DOC و DOCX پذیرفته می‌شود.');
+    if (!ALLOWED.includes(ext)) return setError('فقط فایل‌های RAR و ZIP پذیرفته می‌شود.');
     if (f.size > MAX_MB * 1024 * 1024) return setError(`حجم فایل باید کمتر از ${MAX_MB} مگابایت باشد.`);
     setError('');
     setFile(f);
@@ -182,7 +183,7 @@ export default function SubmitArticle() {
                       <input
                         ref={inputRef}
                         type="file"
-                        accept=".pdf,.doc,.docx"
+                        accept=".rar,.zip"
                         onChange={(e) => pick(e.target.files?.[0])}
                       />
                       <span className={styles.dropIc}>
@@ -191,7 +192,7 @@ export default function SubmitArticle() {
                         </svg>
                       </span>
                       <b>فایل را اینجا رها کنید یا کلیک کنید</b>
-                      <small>PDF، DOC یا DOCX تا {MAX_MB} مگابایت</small>
+                      <small>ZIP یا RAR تا {MAX_MB} مگابایت</small>
                     </label>
                   )}
                 </div>

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 
 const MAX_BYTES = 5 * 1024 * 1024;
-const ALLOWED = ['pdf', 'doc', 'docx'];
+const ALLOWED = ['zip', 'rar'];
 
 const esc = (s = '') =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
