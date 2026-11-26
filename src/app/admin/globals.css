@@ -1,8 +1,16 @@
-:root { --yellow: #FFBA3B; --navy: #0b2a6f; --gold: #FFBA3B; }
+:root {
+    --yellow: #ffba3b;
+    --navy: #0b2a6f;
+    --gold: #ffba3b;
+}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-  font-family: var(--font-vazir), Tahoma, sans-serif;
-  background: #fff;
+    font-family: var(--font-vazir), Tahoma, sans-serif;
+    background: #fff;
 }

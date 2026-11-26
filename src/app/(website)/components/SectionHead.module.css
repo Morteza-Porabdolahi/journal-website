@@ -1,15 +1,39 @@
 .sh {
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
-  border-bottom: 1px solid #DCE1EA; padding-bottom: 14px; margin-bottom: 10px;
-  position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid #dce1ea;
+    padding-bottom: 14px;
+    margin-bottom: 10px;
+    position: relative;
 }
 .sh::after {
-  content: ""; position: absolute; bottom: -1px; inset-inline-start: 0;
-  width: 88px; height: 3px; background: #FFBA3B;
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    inset-inline-start: 0;
+    width: 88px;
+    height: 3px;
+    background: #ffba3b;
 }
-.sh h2 { margin: 0; font-size: 1.7rem; color: #14264A; line-height: 1.5; font-weight: 900; }
-.sh p  { margin: 0; color: #566074; font-size: .95rem; }
+.sh h2 {
+    margin: 0;
+    font-size: 1.7rem;
+    color: #14264a;
+    line-height: 1.5;
+    font-weight: 900;
+}
+.sh p {
+    margin: 0;
+    color: #566074;
+    font-size: 0.95rem;
+}
 
 @media (max-width: 600px) {
-  .sh { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .sh {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
 }
