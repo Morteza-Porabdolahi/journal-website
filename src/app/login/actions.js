@@ -8,30 +8,30 @@ import { createSupabaseServerClient } from '@/src/lib/supabase-server';
 //   .map((e) => e.trim().toLowerCase())
 
 export async function loginAction(_, formData) {
-  const email = formData.get('email')?.toString().trim().toLowerCase();
-  const password = formData.get('password')?.toString();
+    const email = formData.get('email')?.toString().trim().toLowerCase();
+    const password = formData.get('password')?.toString();
 
-  if (!email || !password) {
-    return { error: 'لطفاً ایمیل و رمز عبور را وارد کنید.' };
-  }
+    if (!email || !password) {
+        return { error: 'لطفاً ایمیل و رمز عبور را وارد کنید.' };
+    }
 
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    });
 
-  if (error || !data.user) {
-    return { error: 'ایمیل یا رمز عبور نادرست است.' };
-  }
+    if (error || !data.user) {
+        return { error: 'ایمیل یا رمز عبور نادرست است.' };
+    }
 
-  // if (
-  //   ALLOWED_ADMINS.length > 0 &&
-  //   !ALLOWED_ADMINS.includes(data.user.email?.toLowerCase())
-  // ) {
-  //   await supabase.auth.signOut();
-  //   return { error: 'شما دسترسی مدیریت به این پنل را ندارید.' };
-  // }
+    // if (
+    //   ALLOWED_ADMINS.length > 0 &&
+    //   !ALLOWED_ADMINS.includes(data.user.email?.toLowerCase())
+    // ) {
+    //   await supabase.auth.signOut();
+    //   return { error: 'شما دسترسی مدیریت به این پنل را ندارید.' };
+    // }
 
-  redirect('/admin');
+    redirect('/admin');
 }

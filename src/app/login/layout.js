@@ -10,16 +10,14 @@ const vazir = Vazirmatn({
 });
 
 export const metadata = {
-  title: 'ورود به پنل مدیریت نشریه',
-  robots: { index: false, follow: false },
+    title: 'ورود به پنل مدیریت نشریه',
+    robots: { index: false, follow: false },
 };
 
 export default function LoginLayout({ children }) {
     return (
         <html lang="fa" dir="rtl" className={vazir.variable}>
-            <body>
-                {children}
-            </body>
+            <body>{children}</body>
         </html>
     );
 }

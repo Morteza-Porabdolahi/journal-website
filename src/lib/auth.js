@@ -7,15 +7,17 @@ import { createSupabaseServerClient } from './supabase-server';
 //   .map((e) => e.trim().toLowerCase())
 
 export async function requireAdmin() {
-  const supabase = await createSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
+    const supabase = await createSupabaseServerClient();
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user) notFound();
+    if (!user) notFound();
 
-  // Optional extra lock: restrict to specific emails in .env.local
-  // if (ALLOWED_ADMINS.length > 0 && !ALLOWED_ADMINS.includes(user.email?.toLowerCase())) {
-  //   throw new Error('Unauthorized');
-  // }
+    // Optional extra lock: restrict to specific emails in .env.local
+    // if (ALLOWED_ADMINS.length > 0 && !ALLOWED_ADMINS.includes(user.email?.toLowerCase())) {
+    //   throw new Error('Unauthorized');
+    // }
 
-  return user;
+    return user;
 }

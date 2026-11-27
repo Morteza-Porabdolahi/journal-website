@@ -47,7 +47,10 @@ export default async function AdminLayout({ children }) {
                             مشاهده سایت اصلی ↗
                         </Link>
 
-                        <form action={logoutAction} className={styles.logoutForm}>
+                        <form
+                            action={logoutAction}
+                            className={styles.logoutForm}
+                        >
                             <button type="submit" className={styles.logoutBtn}>
                                 خروج از حساب
                             </button>

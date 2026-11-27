@@ -113,7 +113,7 @@ export default function News({ news, next_event }) {
                 </div>
                 <div className={styles.nextbody}>
                     <span className={styles.tag}>{next_event.tag}</span>
-                    <h3>{next_event .title}</h3>
+                    <h3>{next_event.title}</h3>
                     <div className={styles.meta}>
                         <span>
                             <Clock />

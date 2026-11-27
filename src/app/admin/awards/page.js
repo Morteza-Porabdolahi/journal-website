@@ -1,97 +1,143 @@
 import { getAwardsGrouped } from '@/src/db/queries';
 import { addAward, deleteAward } from '../actions';
 import styles from '../admin.module.css';
-import Icon, {ICONS} from '@/src/app/(website)/components/Icon';
+import Icon, { ICONS } from '@/src/app/(website)/components/Icon';
 
 export default async function AdminAwardsPage() {
-  const groups = await getAwardsGrouped();
+    const groups = await getAwardsGrouped();
 
-  return (
-    <div>
-      <h1 className={styles.pageTitle}>مدیریت افتخارات و جوایز</h1>
+    return (
+        <div>
+            <h1 className={styles.pageTitle}>مدیریت افتخارات و جوایز</h1>
 
-      <section className={styles.card}>
-        <h2 className={styles.cardTitle}>ثبت افتخار جدید</h2>
-        <form action={addAward}>
-          <div className={styles.formGrid}>
-            <label className={styles.field}>
-              <span className={styles.label}>سال *</span>
-              <input name="year" required placeholder="۱۴۰۴" className={styles.input} />
-            </label>
-            <label className={styles.field}>
-              <span className={styles.label}>نوع *</span>
-              <select name="type" className={styles.select}>
-                <option value="جایزه">جایزه</option>
-                <option value="تقدیرنامه">تقدیرنامه</option>
-                <option value="انتشار">انتشار</option>
-                <option value="رویداد">رویداد</option>
-              </select>
-            </label>
-            <div className={styles.fieldFull}>
-  <span className={styles.label}>آیکن</span>
-  <div className={styles.iconPicker} role="radiogroup" aria-label="انتخاب آیکن">
-    {Object.keys(ICONS).map((opt, idx) => (
-      <label key={opt} className={styles.iconOption}>
-        <input
-          type="radio"
-          name="icon"
-          value={opt}
-          defaultChecked={idx === 0}
-          className={styles.iconRadio}
-        />
-        <span className={styles.iconTile}>
-          <span className={styles.iconSvg}>
-            <Icon name={opt} />
-          </span>
-        </span>
-      </label>
-    ))}
-  </div>
-</div>
-            <label className={styles.field}>
-              <span className={styles.label}>برگزارکننده / سازمان *</span>
-              <input name="org" required placeholder="جشنواره نشریات دانشجویی دانشگاه تبریز" className={styles.input} />
-            </label>
-            <label className={styles.fieldFull}>
-              <span className={styles.label}>عنوان *</span>
-              <input name="title" required className={styles.input} />
-            </label>
-            <label className={styles.fieldFull}>
-              <span className={styles.label}>توضیحات *</span>
-              <textarea name="text" required className={styles.textarea} />
-            </label>
-            <label className={styles.checkboxRow}>
-              <input type="checkbox" name="best" />
-              <span>نمایش به عنوان افتخار ویژه</span>
-            </label>
-          </div>
-          <button type="submit" className={styles.submitBtn}>ذخیره افتخار</button>
-        </form>
-      </section>
-
-      {groups.map((group) => (
-        <section key={group.year} className={styles.card}>
-          <h2 className={styles.cardTitle}>سال {group.year}</h2>
-          <div className={styles.list}>
-            {group.items.map((item) => (
-              <div key={item.id} className={styles.listItem}>
-                <div className={styles.itemInfo}>
-                  <span className={styles.itemTitle}>
-                    {item.title}
-                    <span className={styles.badge}>{item.type}</span>
-                    {item.best && <span className={styles.badge}>ویژه</span>}
-                  </span>
-                  <span className={styles.itemMeta}>{item.org}</span>
-                </div>
-                <form action={deleteAward}>
-                  <input type="hidden" name="id" value={item.id} />
-                  <button type="submit" className={styles.deleteBtn}>حذف</button>
+            <section className={styles.card}>
+                <h2 className={styles.cardTitle}>ثبت افتخار جدید</h2>
+                <form action={addAward}>
+                    <div className={styles.formGrid}>
+                        <label className={styles.field}>
+                            <span className={styles.label}>سال *</span>
+                            <input
+                                name="year"
+                                required
+                                placeholder="۱۴۰۴"
+                                className={styles.input}
+                            />
+                        </label>
+                        <label className={styles.field}>
+                            <span className={styles.label}>نوع *</span>
+                            <select name="type" className={styles.select}>
+                                <option value="جایزه">جایزه</option>
+                                <option value="تقدیرنامه">تقدیرنامه</option>
+                                <option value="انتشار">انتشار</option>
+                                <option value="رویداد">رویداد</option>
+                            </select>
+                        </label>
+                        <div className={styles.fieldFull}>
+                            <span className={styles.label}>آیکن</span>
+                            <div
+                                className={styles.iconPicker}
+                                role="radiogroup"
+                                aria-label="انتخاب آیکن"
+                            >
+                                {Object.keys(ICONS).map((opt, idx) => (
+                                    <label
+                                        key={opt}
+                                        className={styles.iconOption}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="icon"
+                                            value={opt}
+                                            defaultChecked={idx === 0}
+                                            className={styles.iconRadio}
+                                        />
+                                        <span className={styles.iconTile}>
+                                            <span className={styles.iconSvg}>
+                                                <Icon name={opt} />
+                                            </span>
+                                        </span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                        <label className={styles.field}>
+                            <span className={styles.label}>
+                                برگزارکننده / سازمان *
+                            </span>
+                            <input
+                                name="org"
+                                required
+                                placeholder="جشنواره نشریات دانشجویی دانشگاه تبریز"
+                                className={styles.input}
+                            />
+                        </label>
+                        <label className={styles.fieldFull}>
+                            <span className={styles.label}>عنوان *</span>
+                            <input
+                                name="title"
+                                required
+                                className={styles.input}
+                            />
+                        </label>
+                        <label className={styles.fieldFull}>
+                            <span className={styles.label}>توضیحات *</span>
+                            <textarea
+                                name="text"
+                                required
+                                className={styles.textarea}
+                            />
+                        </label>
+                        <label className={styles.checkboxRow}>
+                            <input type="checkbox" name="best" />
+                            <span>نمایش به عنوان افتخار ویژه</span>
+                        </label>
+                    </div>
+                    <button type="submit" className={styles.submitBtn}>
+                        ذخیره افتخار
+                    </button>
                 </form>
-              </div>
+            </section>
+
+            {groups.map((group) => (
+                <section key={group.year} className={styles.card}>
+                    <h2 className={styles.cardTitle}>سال {group.year}</h2>
+                    <div className={styles.list}>
+                        {group.items.map((item) => (
+                            <div key={item.id} className={styles.listItem}>
+                                <div className={styles.itemInfo}>
+                                    <span className={styles.itemTitle}>
+                                        {item.title}
+                                        <span className={styles.badge}>
+                                            {item.type}
+                                        </span>
+                                        {item.best && (
+                                            <span className={styles.badge}>
+                                                ویژه
+                                            </span>
+                                        )}
+                                    </span>
+                                    <span className={styles.itemMeta}>
+                                        {item.org}
+                                    </span>
+                                </div>
+                                <form action={deleteAward}>
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value={item.id}
+                                    />
+                                    <button
+                                        type="submit"
+                                        className={styles.deleteBtn}
+                                    >
+                                        حذف
+                                    </button>
+                                </form>
+                            </div>
+                        ))}
+                    </div>
+                </section>
             ))}
-          </div>
-        </section>
-      ))}
-    </div>
-  );
+        </div>
+    );
 }
