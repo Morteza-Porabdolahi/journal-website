@@ -1,6 +1,7 @@
 import { getAwardsGrouped } from '@/src/db/queries';
 import { addAward, deleteAward } from '../actions';
 import styles from '../admin.module.css';
+import Icon, {ICONS} from '@/src/app/(website)/components/Icon';
 
 export default async function AdminAwardsPage() {
   const groups = await getAwardsGrouped();
@@ -26,16 +27,27 @@ export default async function AdminAwardsPage() {
                 <option value="رویداد">رویداد</option>
               </select>
             </label>
-            <label className={styles.field}>
-              <span className={styles.label}>آیکن</span>
-              <select name="icon" className={styles.select}>
-                <option value="trophy">جام (trophy)</option>
-                <option value="medal">مدال (medal)</option>
-                <option value="star">ستاره (star)</option>
-                <option value="book">کتاب (book)</option>
-                <option value="users">افراد (users)</option>
-              </select>
-            </label>
+            <div className={styles.fieldFull}>
+  <span className={styles.label}>آیکن</span>
+  <div className={styles.iconPicker} role="radiogroup" aria-label="انتخاب آیکن">
+    {Object.keys(ICONS).map((opt, idx) => (
+      <label key={opt} className={styles.iconOption}>
+        <input
+          type="radio"
+          name="icon"
+          value={opt}
+          defaultChecked={idx === 0}
+          className={styles.iconRadio}
+        />
+        <span className={styles.iconTile}>
+          <span className={styles.iconSvg}>
+            <Icon name={opt} />
+          </span>
+        </span>
+      </label>
+    ))}
+  </div>
+</div>
             <label className={styles.field}>
               <span className={styles.label}>برگزارکننده / سازمان *</span>
               <input name="org" required placeholder="جشنواره نشریات دانشجویی دانشگاه تبریز" className={styles.input} />
@@ -50,7 +62,7 @@ export default async function AdminAwardsPage() {
             </label>
             <label className={styles.checkboxRow}>
               <input type="checkbox" name="best" />
-              <span>نمایش به عنوان افتخار ویژه (best)</span>
+              <span>نمایش به عنوان افتخار ویژه</span>
             </label>
           </div>
           <button type="submit" className={styles.submitBtn}>ذخیره افتخار</button>

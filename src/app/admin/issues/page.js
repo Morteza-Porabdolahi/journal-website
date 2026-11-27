@@ -23,7 +23,7 @@ export default async function AdminIssuesPage() {
             </label>
             <label className={styles.field}>
               <span className={styles.label}>یا لینک تصویر جلد</span>
-              <input name="coverUrl" placeholder="/images/issue-2.png" className={styles.input} />
+              <input name="coverUrl" placeholder="https://example.com/issue-2.png" className={styles.input} />
             </label>
             <label className={styles.field}>
               <span className={styles.label}>آپلود فایل PDF</span>
@@ -31,7 +31,7 @@ export default async function AdminIssuesPage() {
             </label>
             <label className={styles.field}>
               <span className={styles.label}>یا لینک فایل PDF</span>
-              <input name="pdfUrl" placeholder="/files/issue2.pdf" className={styles.input} />
+              <input name="pdfUrl" placeholder="https://example.com/issue2.pdf" className={styles.input} />
             </label>
           </div>
           <button type="submit" className={styles.submitBtn}>انتشار شماره</button>

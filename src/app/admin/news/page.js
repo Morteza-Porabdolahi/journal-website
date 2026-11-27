@@ -80,7 +80,7 @@ export default async function AdminNewsPage() {
             </label>
             <label className={styles.field}>
               <span className={styles.label}>یا لینک تصویر</span>
-              <input name="imgUrl" placeholder="/images/hero.jpg" className={styles.input} />
+              <input name="imgUrl" placeholder="https://example.com/hero.jpg" className={styles.input} />
             </label>
             <label className={styles.field}>
               <span className={styles.label}>لینک خبر</span>

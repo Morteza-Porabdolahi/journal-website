@@ -35,15 +35,15 @@ export default async function AdminMembersPage() {
             </label>
             <label className={styles.field}>
               <span className={styles.label}>تلگرام (اختیاری)</span>
-              <input name="tg" placeholder="https://t.me/..." className={styles.input} />
+              <input name="tg" placeholder="https://t.me/username" className={styles.input} />
             </label>
             <label className={styles.field}>
               <span className={styles.label}>اینستاگرام (اختیاری)</span>
-              <input name="ig" placeholder="https://instagram.com/..." className={styles.input} />
+              <input name="ig" placeholder="https://instagram.com/username" className={styles.input} />
             </label>
             <label className={styles.field}>
               <span className={styles.label}>ایمیل (اختیاری)</span>
-              <input name="mail" placeholder="mailto:..." className={styles.input} />
+              <input name="mail" placeholder="username@example.com" className={styles.input} />
             </label>
             <label className={styles.fieldFull}>
               <span className={styles.label}>بیوگرافی کوتاه (اختیاری)</span>
