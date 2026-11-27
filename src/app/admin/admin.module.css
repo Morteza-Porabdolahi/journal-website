@@ -3,7 +3,7 @@
 .shell {
     display: grid;
     grid-template-columns: 268px minmax(0, 1fr);
-    min-height: 100vh;
+    min-height: 100dvh;
     background: color-mix(in srgb, var(--navy) 3%, #f8fafc);
     color: color-mix(in srgb, var(--navy) 92%, #000000);
     font-family: inherit;
@@ -14,7 +14,7 @@
 .sidebar {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 100dvh;
     padding: 28px 18px;
     display: flex;
     flex-direction: column;
@@ -446,19 +446,13 @@
 /* --- Responsive --- */
 @media (max-width: 860px) {
     .shell {
-        grid-template-columns: 1fr;
+        display: block;
     }
 
     .sidebar {
-        position: sticky;
-        top: 0;
         z-index: 20;
         height: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
         padding: 14px 18px;
-        gap: 6px;
         box-shadow: 0 8px 24px color-mix(in srgb, var(--navy) 14%, transparent);
     }
 
@@ -497,6 +491,15 @@
     .card {
         padding: 20px;
         border-radius: 16px;
+    }
+}
+@media (max-width: 500px) {
+    .listItem {
+        flex-direction: column;
+    }
+
+    .itemInfo {
+        align-items: center;
     }
 }
 
@@ -830,7 +833,7 @@
     background: var(--gold);
 }
 
-@media (max-width: 58rem) {
+@media (max-width: 928px) {
     .bentoGrid {
         grid-template-columns: 1fr;
     }
