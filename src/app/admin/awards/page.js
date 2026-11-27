@@ -1,5 +1,7 @@
 import { getAwardsGrouped } from '@/src/db/queries';
 import { addAward, deleteAward } from '../actions';
+import { DeleteForm, ActionForm } from '../components/ActionForms';
+
 import styles from '../admin.module.css';
 import Icon, { ICONS } from '@/src/app/(website)/components/Icon';
 
@@ -12,7 +14,7 @@ export default async function AdminAwardsPage() {
 
             <section className={styles.card}>
                 <h2 className={styles.cardTitle}>ثبت افتخار جدید</h2>
-                <form action={addAward}>
+                <ActionForm action={addAward} label="ذخیره">
                     <div className={styles.formGrid}>
                         <label className={styles.field}>
                             <span className={styles.label}>سال *</span>
@@ -92,10 +94,7 @@ export default async function AdminAwardsPage() {
                             <span>نمایش به عنوان افتخار ویژه</span>
                         </label>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        ذخیره افتخار
-                    </button>
-                </form>
+                </ActionForm>
             </section>
 
             {groups.map((group) => (
@@ -120,19 +119,7 @@ export default async function AdminAwardsPage() {
                                         {item.org}
                                     </span>
                                 </div>
-                                <form action={deleteAward}>
-                                    <input
-                                        type="hidden"
-                                        name="id"
-                                        value={item.id}
-                                    />
-                                    <button
-                                        type="submit"
-                                        className={styles.deleteBtn}
-                                    >
-                                        حذف
-                                    </button>
-                                </form>
+                                <DeleteForm action={deleteAward} id={item.id} />
                             </div>
                         ))}
                     </div>

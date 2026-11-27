@@ -61,8 +61,7 @@ export default async function AdminLayout({ children }) {
                     <main className={styles.main}>{children}</main>
                     <Toaster
                         dir="rtl"
-                        position="bottom-left"
-                        richColors
+                        position="top-left"
                         closeButton
                         toastOptions={{
                             style: {

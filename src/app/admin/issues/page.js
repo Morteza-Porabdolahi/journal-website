@@ -1,5 +1,7 @@
 import { getIssues } from '@/src/db/queries';
 import { addIssue, deleteIssue } from '../actions';
+import { DeleteForm, ActionForm } from '../components/ActionForms';
+
 import styles from '../admin.module.css';
 
 export default async function AdminIssuesPage() {
@@ -11,7 +13,7 @@ export default async function AdminIssuesPage() {
 
             <section className={styles.card}>
                 <h2 className={styles.cardTitle}>افزودن شماره جدید</h2>
-                <form action={addIssue}>
+                <ActionForm action={addIssue} label="افزودن شماره">
                     <div className={styles.formGrid}>
                         <label className={styles.fieldFull}>
                             <span className={styles.label}>عنوان شماره *</span>
@@ -63,10 +65,7 @@ export default async function AdminIssuesPage() {
                             />
                         </label>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        انتشار شماره
-                    </button>
-                </form>
+                </ActionForm>
             </section>
 
             <section className={styles.card}>
@@ -84,19 +83,7 @@ export default async function AdminIssuesPage() {
                                     فایل: {item.file}
                                 </span>
                             </div>
-                            <form action={deleteIssue}>
-                                <input
-                                    type="hidden"
-                                    name="id"
-                                    value={item.id}
-                                />
-                                <button
-                                    type="submit"
-                                    className={styles.deleteBtn}
-                                >
-                                    حذف
-                                </button>
-                            </form>
+                            <DeleteForm id={item.id} action={deleteIssue} />
                         </div>
                     ))}
                 </div>

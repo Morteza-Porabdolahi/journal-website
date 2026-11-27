@@ -1,5 +1,7 @@
 import { getNews, getNextEvent } from '@/src/db/queries';
 import { addNews, deleteNews, updateNextEvent } from '../actions';
+import { ActionForm, DeleteForm } from '../components/ActionForms';
+
 import styles from '../admin.module.css';
 
 export default async function AdminNewsPage() {
@@ -13,7 +15,7 @@ export default async function AdminNewsPage() {
                 <h2 className={styles.cardTitle}>
                     ویرایش رویداد پیش‌رو (بنر اصلی)
                 </h2>
-                <form action={updateNextEvent}>
+                <ActionForm action={updateNextEvent} label="به‌روزرسانی رویداد">
                     <div className={styles.formGrid}>
                         <label className={styles.field}>
                             <span className={styles.label}>برچسب</span>
@@ -82,15 +84,12 @@ export default async function AdminNewsPage() {
                             />
                         </label>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        به‌روزرسانی رویداد
-                    </button>
-                </form>
+                </ActionForm>
             </section>
 
             <section className={styles.card}>
                 <h2 className={styles.cardTitle}>افزودن خبر جدید</h2>
-                <form action={addNews}>
+                <ActionForm action={addNews} label="افزودن خبر">
                     <div className={styles.formGrid}>
                         <label className={styles.field}>
                             <span className={styles.label}>دسته‌بندی</span>
@@ -170,10 +169,7 @@ export default async function AdminNewsPage() {
                             />
                         </label>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        انتشار خبر
-                    </button>
-                </form>
+                </ActionForm>
             </section>
 
             <section className={styles.card}>
@@ -194,15 +190,7 @@ export default async function AdminNewsPage() {
                                     {n.day} {n.month} · {n.place}
                                 </span>
                             </div>
-                            <form action={deleteNews}>
-                                <input type="hidden" name="id" value={n.id} />
-                                <button
-                                    type="submit"
-                                    className={styles.deleteBtn}
-                                >
-                                    حذف
-                                </button>
-                            </form>
+                            <DeleteForm action={deleteNews} id={n.id} />
                         </div>
                     ))}
                 </div>

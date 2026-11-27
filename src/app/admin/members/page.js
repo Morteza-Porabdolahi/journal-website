@@ -13,7 +13,7 @@ export default async function AdminMembersPage() {
 
             <section className={styles.card}>
                 <h2 className={styles.cardTitle}>افزودن عضو جدید</h2>
-                <form action={addMember}>
+                <ActionForm action={addMember} label="افزودن عضو">
                     <div className={styles.formGrid}>
                         <label className={styles.field}>
                             <span className={styles.label}>
@@ -101,10 +101,7 @@ export default async function AdminMembersPage() {
                             <textarea name="bio" className={styles.textarea} />
                         </label>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        ذخیره عضو
-                    </button>
-                </form>
+                </ActionForm>
             </section>
 
             <section className={styles.card}>
