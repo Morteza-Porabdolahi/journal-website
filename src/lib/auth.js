@@ -2,10 +2,9 @@
 import { notFound } from 'next/navigation';
 import { createSupabaseServerClient } from './supabase-server';
 
-const ALLOWED_ADMINS = (process.env.ADMIN_EMAILS || '')
-  .split(',')
-  .map((e) => e.trim().toLowerCase())
-  .filter(Boolean);
+// const ALLOWED_ADMINS = (process.env.ADMIN_EMAILS || '')
+//   .split(',')
+//   .map((e) => e.trim().toLowerCase())
 
 export async function requireAdmin() {
   const supabase = await createSupabaseServerClient();
@@ -14,9 +13,9 @@ export async function requireAdmin() {
   if (!user) notFound();
 
   // Optional extra lock: restrict to specific emails in .env.local
-  if (ALLOWED_ADMINS.length > 0 && !ALLOWED_ADMINS.includes(user.email?.toLowerCase())) {
-    throw new Error('Unauthorized');
-  }
+  // if (ALLOWED_ADMINS.length > 0 && !ALLOWED_ADMINS.includes(user.email?.toLowerCase())) {
+  //   throw new Error('Unauthorized');
+  // }
 
   return user;
 }

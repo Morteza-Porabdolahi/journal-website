@@ -12,8 +12,8 @@ async function uploadToStorage(file, folder) {
   if (!file || typeof file === 'string' || file.size === 0) return '';
 
   const supabase = await createSupabaseServerClient();
-  const ext = file.name.split('.').pop();
-  const filePath = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const extension = file.name.split('.').pop();
+  const filePath = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
 
   const { error } = await supabase.storage
     .from('journal-media')
@@ -50,14 +50,16 @@ export async function addMember(formData) {
     sortOrder: Number(formData.get('sortOrder')) || 0,
   });
 
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 export async function deleteMember(formData) {
   await requireAdmin();
+  
   const id = Number(formData.get('id'));
   await db.delete(members).where(eq(members.id, id));
-  revalidatePath('/', 'layout');
+
+  revalidatePath('/');
 }
 
 // --- Issues ---
@@ -76,14 +78,14 @@ export async function addIssue(formData) {
     file,
   });
 
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 export async function deleteIssue(formData) {
   await requireAdmin();
   const id = Number(formData.get('id'));
   await db.delete(issues).where(eq(issues.id, id));
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 // --- News & Next Event ---
@@ -104,14 +106,14 @@ export async function addNews(formData) {
     href: formData.get('href')?.toString().trim() || '#',
   });
 
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 export async function deleteNews(formData) {
   await requireAdmin();
   const id = Number(formData.get('id'));
   await db.delete(news).where(eq(news.id, id));
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 export async function updateNextEvent(formData) {
@@ -134,7 +136,7 @@ export async function updateNextEvent(formData) {
     await db.insert(nextEvent).values(payload);
   }
 
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 // --- Awards ---
@@ -151,12 +153,12 @@ export async function addAward(formData) {
     org: formData.get('org')?.toString().trim(),
   });
 
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
 
 export async function deleteAward(formData) {
   await requireAdmin();
   const id = Number(formData.get('id'));
   await db.delete(awards).where(eq(awards.id, id));
-  revalidatePath('/', 'layout');
+  revalidatePath('/');
 }
