@@ -117,7 +117,11 @@ export default async function AdminMembersPage() {
                                     {m.role} · ترتیب: {m.sortOrder}
                                 </span>
                             </div>
-                            <DeleteForm id={m.id} action={deleteMember} />
+                            <DeleteForm
+                                id={m.id}
+                                action={deleteMember}
+                                itemName={m.name}
+                            />
                         </div>
                     ))}
                 </div>

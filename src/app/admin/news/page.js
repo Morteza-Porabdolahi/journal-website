@@ -15,7 +15,11 @@ export default async function AdminNewsPage() {
                 <h2 className={styles.cardTitle}>
                     ویرایش رویداد پیش‌رو (بنر اصلی)
                 </h2>
-                <ActionForm action={updateNextEvent} label="به‌روزرسانی رویداد">
+                <ActionForm
+                    action={updateNextEvent}
+                    label="به‌روزرسانی رویداد"
+                    resetOnSuccess={false}
+                >
                     <div className={styles.formGrid}>
                         <label className={styles.field}>
                             <span className={styles.label}>برچسب</span>
