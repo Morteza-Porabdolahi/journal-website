@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Vazirmatn } from 'next/font/google';
 import { Toaster } from 'sonner';
 
@@ -7,6 +6,8 @@ import './globals.css';
 
 import { requireAdmin } from '@/src/lib/auth';
 import { logoutAction } from './actions';
+
+import AdminNav from './components/AdminNav';
 
 const vazir = Vazirmatn({
     subsets: ['arabic', 'latin'],
@@ -29,24 +30,7 @@ export default async function AdminLayout({ children }) {
                 <div className={styles.shell}>
                     <aside className={styles.sidebar}>
                         <div className={styles.brand}>پنل مدیریت کیمیا</div>
-                        <Link href="/admin" className={styles.navLink}>
-                            نمای کلی
-                        </Link>
-                        <Link href="/admin/members" className={styles.navLink}>
-                            اعضا
-                        </Link>
-                        <Link href="/admin/issues" className={styles.navLink}>
-                            شماره‌های نشریه
-                        </Link>
-                        <Link href="/admin/news" className={styles.navLink}>
-                            اخبار و رویداد پیش‌رو
-                        </Link>
-                        <Link href="/admin/awards" className={styles.navLink}>
-                            افتخارات و جوایز
-                        </Link>
-                        <Link href="/" className={styles.navLink}>
-                            مشاهده سایت اصلی ↗
-                        </Link>
+                        <AdminNav />
 
                         <form
                             action={logoutAction}

@@ -1,6 +1,6 @@
 import { getIssues } from '@/src/db/queries';
-import { addIssue, deleteIssue } from '../actions';
-import { DeleteForm, ActionForm } from '../components/ActionForms';
+import { addIssue, deleteIssue, updateIssue } from '../actions';
+import { DeleteForm, ActionForm, EditModal } from '../components/ActionForms';
 
 import styles from '../admin.module.css';
 
@@ -83,7 +83,105 @@ export default async function AdminIssuesPage() {
                                     فایل: {item.file}
                                 </span>
                             </div>
-                            <DeleteForm id={item.id} action={deleteIssue} />
+                            <div className={styles.rowActions}>
+                                <EditModal action={updateIssue}>
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value={item.id}
+                                    />
+
+                                    <div className={styles.currentMediaBox}>
+                                        <img
+                                            src={item.cover}
+                                            alt={item.title}
+                                            className={styles.currentAvatar}
+                                        />
+                                        <div
+                                            className={styles.currentMediaInfo}
+                                        >
+                                            <span className={styles.label}>
+                                                جلد و فایل فعلی
+                                            </span>
+                                            <a
+                                                href={item.file}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.issuePdfLink}
+                                            >
+                                                مشاهده PDF فعلی ↗
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.formGrid}>
+                                        <label className={styles.fieldFull}>
+                                            <span className={styles.label}>
+                                                عنوان شماره *
+                                            </span>
+                                            <input
+                                                name="title"
+                                                required
+                                                defaultValue={item.title}
+                                                className={styles.input}
+                                            />
+                                        </label>
+
+                                        <label className={styles.field}>
+                                            <span className={styles.label}>
+                                                جایگزینی تصویر جلد (اختیاری)
+                                            </span>
+                                            <input
+                                                name="coverFile"
+                                                type="file"
+                                                accept="image/*"
+                                                className={styles.input}
+                                            />
+                                        </label>
+
+                                        <label className={styles.field}>
+                                            <span className={styles.label}>
+                                                جایگزینی فایل PDF (اختیاری)
+                                            </span>
+                                            <input
+                                                name="pdfFile"
+                                                type="file"
+                                                accept="application/pdf"
+                                                className={styles.input}
+                                            />
+                                        </label>
+
+                                        <label className={styles.fieldFull}>
+                                            <span className={styles.label}>
+                                                یا لینک مستقیم تصویر جلد
+                                            </span>
+                                            <input
+                                                name="coverUrl"
+                                                dir="ltr"
+                                                defaultValue={item.cover}
+                                                className={styles.input}
+                                            />
+                                        </label>
+
+                                        <label className={styles.fieldFull}>
+                                            <span className={styles.label}>
+                                                یا لینک مستقیم فایل PDF
+                                            </span>
+                                            <input
+                                                name="fileUrl"
+                                                dir="ltr"
+                                                defaultValue={item.file}
+                                                className={styles.input}
+                                            />
+                                        </label>
+                                    </div>
+                                </EditModal>
+
+                                <DeleteForm
+                                    action={deleteIssue}
+                                    id={item.id}
+                                />
+                            </div>
                         </div>
                     ))}
                 </div>
