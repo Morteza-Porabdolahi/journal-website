@@ -8,6 +8,30 @@ import { members, issues, news, nextEvent, awards } from '@/src/db/schema';
 import { requireAdmin } from '@/src/lib/auth';
 import { createSupabaseServerClient } from '@/src/lib/supabase-server';
 
+const BUCKET = 'journal-media';
+const PUBLIC_PREFIX = `/storage/v1/object/public/${BUCKET}/`;
+
+async function deleteFromStorage(urls) {
+    const list = Array.isArray(urls) ? urls : [urls];
+
+    const paths = list
+        .filter((url) => typeof url === 'string' && url.includes(PUBLIC_PREFIX))
+        .map((url) => {
+            const rawPath = url.split(PUBLIC_PREFIX)[1]?.split('?')[0];
+            return rawPath ? decodeURIComponent(rawPath) : null;
+        })
+        .filter(Boolean);
+
+    if (paths.length === 0) return;
+
+    const supabase = await createSupabaseServerClient();
+    const { error } = await supabase.storage.from(BUCKET).remove(paths);
+
+    if (error) {
+        console.error('Storage cleanup failed:', error.message);
+    }
+}
+
 async function uploadToStorage(file, folder) {
     if (!file || typeof file === 'string' || file.size === 0) return '';
 
@@ -87,7 +111,14 @@ export async function deleteMember(formData) {
 
     try {
         const id = Number(formData.get('id'));
-        await db.delete(members).where(eq(members.id, id));
+        const [deleted] = await db
+            .delete(members)
+            .where(eq(members.id, id))
+            .returning({ photo: members.photo });
+
+        if (deleted?.photo) {
+            await deleteFromStorage(deleted.photo);
+        }
 
         revalidatePath('/');
         return { ok: true, message: 'عضو مورد نظر حذف شد.' };
@@ -150,7 +181,14 @@ export async function deleteIssue(formData) {
 
     try {
         const id = Number(formData.get('id'));
-        await db.delete(issues).where(eq(issues.id, id));
+        const [deleted] = await db
+            .delete(issues)
+            .where(eq(issues.id, id))
+            .returning({ cover: issues.cover, file: issues.file });
+
+        if (deleted) {
+            await deleteFromStorage([deleted.cover, deleted.file]);
+        }
 
         revalidatePath('/');
         return { ok: true, message: 'جلد مورد نظر حذف شد.' };
@@ -219,9 +257,16 @@ export async function deleteNews(formData) {
 
     try {
         const id = Number(formData.get('id'));
-        await db.delete(news).where(eq(news.id, id));
-        revalidatePath('/');
+        const [deleted] = await db
+            .delete(news)
+            .where(eq(news.id, id))
+            .returning({ img: news.img });
 
+        if (deleted?.img) {
+            await deleteFromStorage(deleted.img);
+        }
+
+        revalidatePath('/');
         return { ok: true, message: 'خبر مورد نظر حذف شد.' };
     } catch (err) {
         return {
