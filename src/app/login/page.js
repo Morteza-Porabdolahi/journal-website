@@ -8,7 +8,7 @@ export default function LoginPage() {
         <div className={styles.header}>
           <span className={styles.dot} aria-hidden="true" />
           <h1 className={styles.title}>پنل مدیریت نشریه کیمیا</h1>
-          <p className={styles.subtitle}>برای مدیریت محتوا وارد حساب تحریریه شوید</p>
+          <p className={styles.subtitle}>برای مدیریت محتوا وارد حساب کاربری خود شوید.</p>
         </div>
 
         <LoginForm />

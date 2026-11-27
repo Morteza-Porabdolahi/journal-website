@@ -10,7 +10,7 @@ const vazir = Vazirmatn({
 });
 
 export const metadata = {
-  title: 'ورود به پنل تحریریه',
+  title: 'ورود به پنل مدیریت نشریه',
   robots: { index: false, follow: false },
 };
 

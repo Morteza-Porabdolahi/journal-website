@@ -101,12 +101,12 @@ export default function News({ news, next_event }) {
             aria-label="اخبار و رویدادها"
         >
             <SectionHead title="اخبار و رویدادها" className={styles.sh}>
-                <Link className={styles.all} href="#all-news">
+                {/* <Link className={styles.all} href="#all-news">
                     مشاهده همه
-                </Link>
+                </Link> */}
             </SectionHead>
 
-            <Link className={styles.next} href={next_event.href}>
+            <section className={styles.next}>
                 <div className={styles.bigdate}>
                     <b>{next_event.day}</b>
                     <span>{next_event.month}</span>
@@ -128,7 +128,7 @@ export default function News({ news, next_event }) {
                 {/* <span className={styles.cta}>
                     ثبت‌نام و جزئیات <Arrow />
                 </span> */}
-            </Link>
+            </section>
 
             <div className={styles.grid} ref={trackRef}>
                 {news.map((n, i) => (
