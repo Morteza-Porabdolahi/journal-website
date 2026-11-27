@@ -1,5 +1,7 @@
 import { getMembers } from '@/src/db/queries';
 import { addMember, deleteMember } from '../actions';
+import { ActionForm, DeleteForm } from '../components/ActionForms';
+
 import styles from '../admin.module.css';
 
 export default async function AdminMembersPage() {
@@ -118,15 +120,7 @@ export default async function AdminMembersPage() {
                                     {m.role} · ترتیب: {m.sortOrder}
                                 </span>
                             </div>
-                            <form action={deleteMember}>
-                                <input type="hidden" name="id" value={m.id} />
-                                <button
-                                    type="submit"
-                                    className={styles.deleteBtn}
-                                >
-                                    حذف
-                                </button>
-                            </form>
+                            <DeleteForm id={m.id} action={deleteMember} />
                         </div>
                     ))}
                 </div>

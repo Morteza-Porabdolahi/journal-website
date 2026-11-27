@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Vazirmatn } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 import styles from './admin.module.css';
 import './globals.css';
@@ -58,6 +59,18 @@ export default async function AdminLayout({ children }) {
                     </aside>
 
                     <main className={styles.main}>{children}</main>
+                    <Toaster
+                        dir="rtl"
+                        position="bottom-left"
+                        richColors
+                        closeButton
+                        toastOptions={{
+                            style: {
+                                fontFamily: 'inherit',
+                                borderRadius: '0.875rem',
+                            },
+                        }}
+                    />
                 </div>
             </body>
         </html>

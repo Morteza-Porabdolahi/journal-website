@@ -83,6 +83,8 @@ export async function addMember(formData) {
 }
 
 export async function deleteMember(formData) {
+    await requireAdmin();
+
     try {
         const id = Number(formData.get('id'));
         await db.delete(members).where(eq(members.id, id));
