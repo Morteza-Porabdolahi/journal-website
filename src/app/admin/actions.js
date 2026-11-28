@@ -54,17 +54,10 @@ async function uploadToStorage(file, folder) {
 
 // --- Auth ---
 export async function logoutAction() {
-    try {
-        const supabase = await createSupabaseServerClient();
-        await supabase.auth.signOut();
+    const supabase = await createSupabaseServerClient();
+    await supabase.auth.signOut();
 
-        redirect('/');
-    } catch (err) {
-        return {
-            ok: false,
-            message: 'لطفاً دوباره تلاش کنید!',
-        };
-    }
+    redirect('/');
 }
 
 // --- Members ---
